@@ -6,9 +6,14 @@ namespace GritApi.Data;
 
 public class WorkoutContext : DbContext
 {
-    public WorkoutContext (DbContextOptions<WorkoutContext> options)
-        : base(options)
+    protected readonly IConfiguration Configuration;
+    public WorkoutContext (IConfiguration configuration)
     {
+        Configuration = configuration;
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql(Configuration.GetConnectionString("GritDatabase"));
     }
 
     public DbSet<Category> Category => Set<Category>();
