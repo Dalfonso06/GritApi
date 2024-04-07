@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GritApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+377a5ea960811774ddfc6c06f6b709b36b317c0f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be8b2caeedce86f943cc8971319882846cd68903")]
 [assembly: System.Reflection.AssemblyProductAttribute("GritApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GritApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
