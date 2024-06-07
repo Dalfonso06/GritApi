@@ -11,6 +11,5 @@ public class Exercise
     public string? Name { get; set; }
     public MuscleGroup? MuscleGroup { get; set; }
     public string? Description { get; set; }
-    public int Sets { get; set; }
-    public List<int>? Reps { get; set; }
+    public ICollection<RepRange>? Reps { get; set; }
 }

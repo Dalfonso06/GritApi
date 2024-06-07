@@ -16,6 +16,16 @@ public class WorkoutContext : DbContext
         optionsBuilder.UseNpgsql(Configuration.GetConnectionString("GritDatabase"));
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Exercise>()
+            .OwnsMany(e => e.Reps , a =>
+            {
+                a.WithOwner().HasForeignKey("ExerciseId");
+                a.HasKey("ExerciseId", "MinReps", "MaxReps");
+            });
+    }
+
     public DbSet<Category> Category => Set<Category>();
     public DbSet<Exercise> Exercise => Set<Exercise>();
     public DbSet<MuscleGroup> MuscleGroup => Set<MuscleGroup>();

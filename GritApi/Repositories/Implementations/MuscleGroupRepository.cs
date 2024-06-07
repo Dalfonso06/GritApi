@@ -1,6 +1,7 @@
 using GritApi.Data;
 using GritApi.Models;
 using GritApi.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace GritApi.Repositories.Implementations;
 
@@ -22,9 +23,9 @@ public class MuscleGroupRepository<T> : IMuscleGroupRepository<MuscleGroup>
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<MuscleGroup>> GetAllMuscleGroups()
+    public async Task<IEnumerable<MuscleGroup>> GetAllMuscleGroups()
     {
-        throw new NotImplementedException();
+        return await _context.MuscleGroup.ToListAsync();
     }
 
     public Task<MuscleGroup> GetMuscleGroup(int id)

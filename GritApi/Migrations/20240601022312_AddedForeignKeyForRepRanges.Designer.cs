@@ -3,6 +3,7 @@ using System;
 using GritApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GritApi.Migrations
 {
     [DbContext(typeof(WorkoutContext))]
-    partial class WorkoutContextModelSnapshot : ModelSnapshot
+    [Migration("20240601022312_AddedForeignKeyForRepRanges")]
+    partial class AddedForeignKeyForRepRanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,16 +151,24 @@ namespace GritApi.Migrations
 
                     b.OwnsMany("GritApi.Models.RepRange", "Reps", b1 =>
                         {
-                            b1.Property<int>("ExerciseId")
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
                                 .HasColumnType("integer");
 
-                            b1.Property<int>("MinReps")
+                            NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b1.Property<int>("Id"));
+
+                            b1.Property<int>("ExerciseId")
                                 .HasColumnType("integer");
 
                             b1.Property<int>("MaxReps")
                                 .HasColumnType("integer");
 
-                            b1.HasKey("ExerciseId", "MinReps", "MaxReps");
+                            b1.Property<int>("MinReps")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("ExerciseId");
 
                             b1.ToTable("RepRange");
 
