@@ -4,13 +4,10 @@ using GritApi.Models;
 
 namespace GritApi.Data;
 
-public class WorkoutContext : DbContext
+public class WorkoutContext(IConfiguration configuration) : DbContext
 {
-    protected readonly IConfiguration Configuration;
-    public WorkoutContext (IConfiguration configuration)
-    {
-        Configuration = configuration;
-    }
+    protected readonly IConfiguration Configuration = configuration;
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(Configuration.GetConnectionString("GritDatabase"));
@@ -26,7 +23,7 @@ public class WorkoutContext : DbContext
             });
     }
 
-    public DbSet<Category> Category => Set<Category>();
+    public DbSet<HashTags> HashTags => Set<HashTags>();
     public DbSet<Exercise> Exercise => Set<Exercise>();
     public DbSet<MuscleGroup> MuscleGroup => Set<MuscleGroup>();
     public DbSet<Routine> Routine => Set<Routine>();

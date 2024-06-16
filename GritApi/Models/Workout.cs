@@ -11,6 +11,6 @@ public class Workout
     [MaxLength(100)]
     public string? Name { get; set; }
     public string? Description { get; set; }
-    public Category? Category { get; set; }
+    public ICollection<HashTags>? HashTags { get; set; }
     public ICollection<Exercise>? Exercises { get; set; }
 }
